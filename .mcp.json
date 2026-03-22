@@ -2,5 +2,9 @@
   "stitch": {
     "command": "npx",
     "args": ["-y", "@anthropic/mcp-stitch@latest"]
+  },
+  "nanobanana-mcp": {
+    "command": "npx",
+    "args": ["-y", "@ycse/nanobanana-mcp"]
   }
 }

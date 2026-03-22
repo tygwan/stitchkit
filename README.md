@@ -62,6 +62,7 @@ git clone https://github.com/tygwan/stitchkit.git ~/.claude/plugins/stitchkit
 |---|---|
 | Google Stitch | AI-powered UI design generation, editing, variants, and HTML export |
 | Figma | Design file sync, component import, and design token extraction |
+| [Nanobanana](https://github.com/tygwan/nanobanana-mcp) | Gemini-powered image generation, editing, and smart model selection |
 
 ### Prompt Templates
 
@@ -152,6 +153,31 @@ exploring different moods: calm blue, warm sunset, forest green.
 2. Export the HTML/CSS
 3. Integrate into my React project
 ```
+
+## Nanobanana — Gemini Image Generation
+
+stitchkit includes [nanobanana-mcp](https://github.com/tygwan/nanobanana-mcp), an MCP server for AI image generation powered by Google's Gemini models. It provides:
+
+- **Multi-model image generation** — Gemini 3.1 Flash (default), Gemini 3 Pro, and Gemini 2.5 Flash
+- **Smart model routing** — Automatically picks the best model based on your prompt
+- **Image editing** — Edit existing images with natural language instructions
+- **Aspect ratio control** — 1:1, 16:9, 9:16, 21:9, and more
+- **Conversation context** — Multi-turn image generation with chat history
+
+### Standalone installation
+
+If you want nanobanana without the full stitchkit plugin:
+
+```bash
+claude mcp add -s user nanobanana-mcp -- npx -y @ycse/nanobanana-mcp
+```
+
+> **Requires** a `GOOGLE_AI_API_KEY` (or `GEMINI_API_KEY`) environment variable. Get a free key at [Google AI Studio](https://makersuite.google.com/app/apikey).
+
+### Nanobanana template repos
+
+- [zhongweili/nanobanana-mcp-server](https://github.com/zhongweili/nanobanana-mcp-server) — Original upstream project with full documentation
+- [anthropics/claude-code-mcp-quickstart](https://github.com/anthropics/claude-code-mcp-quickstart) — Claude Code MCP quickstart (general reference)
 
 ## Related Projects
 
