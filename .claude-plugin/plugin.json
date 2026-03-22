@@ -1,0 +1,22 @@
+{
+  "name": "stitchkit",
+  "version": "0.1.0",
+  "description": "Google Stitch & Figma design toolkit for Claude Code — MCP setup, design skills, and workflow agents",
+  "author": {
+    "name": "tygwan",
+    "url": "https://github.com/tygwan"
+  },
+  "homepage": "https://github.com/tygwan/stitchkit",
+  "repository": "https://github.com/tygwan/stitchkit",
+  "license": "MIT",
+  "keywords": [
+    "stitch",
+    "figma",
+    "google-stitch",
+    "ui-design",
+    "ai-design",
+    "mcp",
+    "design-to-code",
+    "vibe-design"
+  ]
+}

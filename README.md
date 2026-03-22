@@ -6,11 +6,10 @@
 
 <p align="center">
   <strong>The ultimate Stitch toolkit for Claude Code</strong><br>
-  Generate, sync, and export UI designs seamlessly with Google Stitch and Figma.
+  Design skills, prompt templates, and MCP setup for Google Stitch & Figma.
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/stitchkit"><img src="https://img.shields.io/npm/v/stitchkit?style=flat-square" alt="npm version"></a>
   <a href="https://github.com/tygwan/stitchkit/blob/main/LICENSE"><img src="https://img.shields.io/github/license/tygwan/stitchkit?style=flat-square" alt="license"></a>
   <a href="https://github.com/tygwan/stitchkit"><img src="https://img.shields.io/github/stars/tygwan/stitchkit?style=social" alt="stars"></a>
 </p>
@@ -23,130 +22,149 @@
 
 ## What is stitchkit?
 
-**stitchkit** is an MCP (Model Context Protocol) server that brings [Google Stitch](https://stitch.withgoogle.com) and [Figma](https://figma.com) directly into your Claude Code workflow. Design, iterate, and export — all from your terminal.
+**stitchkit** is a [Claude Code plugin](https://docs.anthropic.com/en/docs/claude-code) that supercharges your design workflow. It bundles:
 
-### Features
+- **MCP Setup** — One-command installation of Google Stitch and Figma MCP servers
+- **Design Skills** — Expert prompting skills for generating UI designs with Stitch
+- **Prompt Templates** — Ready-to-use templates for 22+ web page types
+- **Agents** — Autonomous design exploration agent
 
-- **AI Design Generation** — Generate high-fidelity UI screens from text prompts via Google Stitch, powered by Gemini
-- **Figma Sync** — Push Stitch designs to Figma or pull components from your Figma projects
-- **Design-to-Code** — Export production-ready HTML/CSS from any Stitch screen
-- **Variant Explorer** — Generate design variants with different layouts, colors, and styles
-- **Project Management** — Create, organize, and manage Stitch projects programmatically
+## Installation
+
+```bash
+claude plugin add tygwan/stitchkit
+```
+
+Or clone manually:
+
+```bash
+git clone https://github.com/tygwan/stitchkit.git ~/.claude/plugins/stitchkit
+```
+
+## What's Included
+
+### Skills
+
+| Skill | Type | Description |
+|---|---|---|
+| `/stitch-setup` | User-invoked | Set up Stitch and/or Figma MCP servers with guided configuration |
+| `stitch-design` | Auto-triggered | Activates on design requests — generates screens with optimized Stitch prompts |
+
+### Agents
+
+| Agent | Description |
+|---|---|
+| `design-explorer` | Autonomously generates 3-4 design alternatives for a concept, varying style/layout/color |
+
+### MCP Servers (auto-configured)
+
+| Server | Purpose |
+|---|---|
+| Google Stitch | AI-powered UI design generation, editing, variants, and HTML export |
+| Figma | Design file sync, component import, and design token extraction |
+
+### Prompt Templates
+
+22+ page type templates organized by category:
+
+- **Marketing** — Landing Page, Pricing, About/Team, Blog, Portfolio
+- **Product** — Dashboard, Settings, Onboarding, Chat, Feed
+- **Commerce** — Product Listing, Product Detail, Cart/Checkout, Order Tracking
+- **Utility** — Login/Auth, 404/Error, Search, Email/Newsletter
+- **Admin** — CMS, Data Table, Kanban, Calendar
 
 ## Quick Start
 
-### Prerequisites
-
-- [Claude Code](https://claude.com/claude-code) CLI installed
-- Google account with [Stitch](https://stitch.withgoogle.com) access
-- (Optional) Figma account for sync features
-
-### Installation
-
-```bash
-npm install -g stitchkit
-```
-
-### MCP Configuration
-
-Add stitchkit to your Claude Code MCP settings:
-
-```json
-{
-  "mcpServers": {
-    "stitchkit": {
-      "command": "npx",
-      "args": ["-y", "stitchkit"]
-    }
-  }
-}
-```
-
-### Usage
-
-Once configured, stitchkit tools are available directly in Claude Code:
+### 1. Set up MCP servers
 
 ```
-> Generate a mobile login screen with social auth buttons and biometric login
-
-> Push the latest Stitch designs to my Figma project
-
-> Export the dashboard screen as HTML/CSS
-
-> Create 3 color variants of the landing page
+/stitch-setup
 ```
 
-## Available Tools
+This will configure Google Stitch MCP (and optionally Figma MCP) in your project.
 
-| Tool | Description |
-|---|---|
-| `create_project` | Create a new Stitch design project |
-| `generate_screen` | Generate a UI screen from a text prompt |
-| `edit_screen` | Edit existing screens with natural language |
-| `generate_variants` | Create design variants (layout, color, font, etc.) |
-| `list_projects` | List all your Stitch projects |
-| `list_screens` | List screens within a project |
-| `get_screen` | Get screen details including HTML and screenshots |
-| `export_html` | Export screen as production-ready HTML/CSS |
-| `figma_push` | Push Stitch designs to a Figma file |
-| `figma_pull` | Pull components from Figma into Stitch |
+### 2. Design something
+
+```
+Design a SaaS analytics dashboard with KPI cards,
+revenue chart, and user segments donut chart
+```
+
+The `stitch-design` skill auto-activates, creates a Stitch project, and generates your design.
+
+### 3. Explore alternatives
+
+```
+Use the design-explorer agent to create 4 variants
+of this landing page in different styles
+```
+
+### 4. Export
+
+```
+Download the dashboard screenshot and export the HTML
+```
+
+## Plugin Structure
+
+```
+stitchkit/
+├── .claude-plugin/
+│   └── plugin.json              # Plugin metadata
+├── .mcp.json                    # Stitch MCP auto-configuration
+├── skills/
+│   ├── stitch-design/
+│   │   ├── SKILL.md             # Design generation skill (auto-triggered)
+│   │   └── references/
+│   │       └── prompt-templates.md  # 22+ page type templates
+│   └── stitch-setup/
+│       └── SKILL.md             # MCP setup command (/stitch-setup)
+├── agents/
+│   └── design-explorer.md      # Multi-variant design exploration agent
+├── assets/
+│   ├── banner.png
+│   └── icon.png
+├── LICENSE
+└── README.md
+```
 
 ## Examples
 
-### Generate a Dashboard
+### Generate a mobile app screen
 
 ```
-> Create a SaaS analytics dashboard with KPI cards,
-  revenue chart, and user segments donut chart
+Design a fitness tracking app home screen with daily step count ring,
+heart rate monitor, weekly activity chart, and quick-start workout buttons.
+Use a dark theme with vibrant accent colors.
 ```
 
-### Design-to-Code Pipeline
+### Generate and compare variants
 
 ```
-> Generate a pricing page with 3 tiers, then export as HTML
+Create a landing page for a meditation app, then generate 3 color variants
+exploring different moods: calm blue, warm sunset, forest green.
 ```
 
-### Figma Integration
+### Design-to-code workflow
 
 ```
-> Pull the design system from my Figma file and apply it
-  to the Stitch project
-```
-
-## Architecture
-
-```
-Claude Code ──► stitchkit MCP Server
-                    ├── Google Stitch API
-                    │   ├── Screen Generation
-                    │   ├── Screen Editing
-                    │   ├── Variant Generation
-                    │   └── HTML/Screenshot Export
-                    └── Figma API
-                        ├── File Sync
-                        ├── Component Import
-                        └── Design Token Export
-```
-
-## Development
-
-```bash
-git clone https://github.com/tygwan/stitchkit.git
-cd stitchkit
-npm install
-npm run build
-npm run dev
+1. Generate a checkout page design with Stitch
+2. Export the HTML/CSS
+3. Integrate into my React project
 ```
 
 ## Related Projects
 
-- [awesome-stitch-design](https://github.com/tygwan/awesome-stitch-design) — Curated list of Stitch design prompts and resources
+- [awesome-stitch-design](https://github.com/tygwan/awesome-stitch-design) — Curated list of 44+ Stitch design prompts with previews
 - [stitch-sdk](https://github.com/google-labs-code/stitch-sdk) — Official Google Stitch SDK
 - [stitch-mcp](https://github.com/davideast/stitch-mcp) — Community Stitch MCP server
 
 ## Contributing
 
-Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) before submitting a PR.
+Contributions welcome! You can add:
+- New prompt templates in `skills/stitch-design/references/`
+- New agents in `agents/`
+- New skills in `skills/`
 
 ## License
 

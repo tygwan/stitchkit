@@ -1,0 +1,6 @@
+{
+  "stitch": {
+    "command": "npx",
+    "args": ["-y", "@anthropic/mcp-stitch@latest"]
+  }
+}
