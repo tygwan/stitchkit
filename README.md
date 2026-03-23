@@ -24,10 +24,22 @@
 
 **stitchkit** is a [Claude Code plugin](https://docs.anthropic.com/en/docs/claude-code) that supercharges your design workflow. It bundles:
 
-- **MCP Setup** — One-command installation of Google Stitch and Figma MCP servers
+- **MCP Setup** — One-command installation of Google Stitch, Figma, and NanoBanana MCP servers
 - **Design Skills** — Expert prompting skills for generating UI designs with Stitch
 - **Prompt Templates** — Ready-to-use templates for 22+ web page types
 - **Agents** — Autonomous design exploration agent
+
+## Prerequisites
+
+You will need API keys / tokens for the MCP servers bundled in this plugin:
+
+| MCP Server | Key Required | Where to Get It |
+|---|---|---|
+| **Google Stitch** | Google account (OAuth) or `GOOGLE_API_KEY` | [Google Cloud Console](https://console.cloud.google.com/) > APIs & Services > Credentials |
+| **Figma** | `FIGMA_ACCESS_TOKEN` | [Figma](https://figma.com) > Settings > Security > Personal access tokens |
+| **NanoBanana** | `GOOGLE_AI_API_KEY` (or `GEMINI_API_KEY`) | [Google AI Studio](https://makersuite.google.com/app/apikey) (free) |
+
+> The plugin auto-registers all three MCP servers when installed. You just need to provide your API keys as environment variables (see [Setup](#setup) below).
 
 ## Installation
 
@@ -41,13 +53,52 @@ Or clone manually:
 git clone https://github.com/tygwan/stitchkit.git ~/.claude/plugins/stitchkit
 ```
 
+## Setup
+
+After installing the plugin, configure your API keys so the MCP servers can authenticate.
+
+### Step 1: Set environment variables
+
+Add the following to your shell profile (`~/.bashrc`, `~/.zshrc`, etc.) or a project `.env` file:
+
+```bash
+# Google Stitch — only needed if you skip OAuth and use API key auth
+export GOOGLE_API_KEY="your-google-cloud-api-key"
+
+# Figma MCP — required for Figma integration
+export FIGMA_ACCESS_TOKEN="figd_your-figma-token"
+
+# NanoBanana (Gemini image generation) — required for image gen
+export GOOGLE_AI_API_KEY="your-google-ai-api-key"
+```
+
+### Step 2: Verify with `/stitch-setup`
+
+Run the setup skill inside Claude Code to validate your configuration:
+
+```
+/stitch-setup
+```
+
+This will check each MCP server's connectivity and guide you through any missing credentials.
+
+### Step 3: Start designing
+
+```
+Design a SaaS analytics dashboard with KPI cards, revenue chart, and user segments donut chart
+```
+
+The `stitch-design` skill auto-activates and handles the rest.
+
+> **Tip:** If you only need a subset of the servers, you can skip the keys you don't need. Stitch works standalone with OAuth (no API key), and NanoBanana is optional if you don't need Gemini image generation.
+
 ## What's Included
 
 ### Skills
 
 | Skill | Type | Description |
 |---|---|---|
-| `/stitch-setup` | User-invoked | Set up Stitch and/or Figma MCP servers with guided configuration |
+| `/stitch-setup` | User-invoked | Set up Stitch, Figma, and NanoBanana MCP servers with guided configuration |
 | `stitch-design` | Auto-triggered | Activates on design requests — generates screens with optimized Stitch prompts |
 
 ### Agents
@@ -76,15 +127,7 @@ git clone https://github.com/tygwan/stitchkit.git ~/.claude/plugins/stitchkit
 
 ## Quick Start
 
-### 1. Set up MCP servers
-
-```
-/stitch-setup
-```
-
-This will configure Google Stitch MCP (and optionally Figma MCP) in your project.
-
-### 2. Design something
+### 1. Design something
 
 ```
 Design a SaaS analytics dashboard with KPI cards,
@@ -92,6 +135,13 @@ revenue chart, and user segments donut chart
 ```
 
 The `stitch-design` skill auto-activates, creates a Stitch project, and generates your design.
+
+### 2. Generate images with NanoBanana
+
+```
+Generate a hero illustration for my landing page — isometric 3D style,
+purple gradient background, floating dashboard elements
+```
 
 ### 3. Explore alternatives
 
@@ -112,7 +162,7 @@ Download the dashboard screenshot and export the HTML
 stitchkit/
 ├── .claude-plugin/
 │   └── plugin.json              # Plugin metadata
-├── .mcp.json                    # Stitch MCP auto-configuration
+├── .mcp.json                    # Stitch, Figma & NanoBanana MCP auto-configuration
 ├── skills/
 │   ├── stitch-design/
 │   │   ├── SKILL.md             # Design generation skill (auto-triggered)

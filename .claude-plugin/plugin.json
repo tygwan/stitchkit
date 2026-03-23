@@ -1,7 +1,7 @@
 {
   "name": "stitchkit",
   "version": "0.1.0",
-  "description": "Google Stitch & Figma design toolkit for Claude Code — MCP setup, design skills, and workflow agents",
+  "description": "Google Stitch, Figma & NanoBanana design toolkit for Claude Code — MCP setup, design skills, and workflow agents",
   "author": {
     "name": "tygwan",
     "url": "https://github.com/tygwan"
@@ -12,11 +12,14 @@
   "keywords": [
     "stitch",
     "figma",
+    "nanobanana",
     "google-stitch",
+    "gemini",
     "ui-design",
     "ai-design",
     "mcp",
     "design-to-code",
-    "vibe-design"
+    "vibe-design",
+    "image-generation"
   ]
 }
