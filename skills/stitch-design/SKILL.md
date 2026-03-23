@@ -57,6 +57,23 @@ Refer to the references directory for detailed prompt templates organized by cat
 - Utility (Login, 404, Search, Email)
 - Admin (CMS, Data Table, Kanban, Calendar)
 
+## Reference-based design workflow
+
+Stitch MCP only accepts text prompts. For reference-based workflows, combine with NanoBanana:
+
+| Task | Tool |
+|---|---|
+| UI layout from text | `mcp__stitch__generate_screen_from_text` |
+| Icon/banner/image from text | `mcp__nanobanana-mcp__gemini_generate_image` |
+| Edit existing image | `mcp__nanobanana-mcp__gemini_edit_image` |
+| Image with reference style | `mcp__nanobanana-mcp__gemini_generate_image` with `reference_images` |
+| Consistent multi-image series | `mcp__nanobanana-mcp__gemini_generate_image` with `use_image_history: true` |
+
+### Workflow example: design + assets
+1. Generate UI layout with Stitch → get screenshot
+2. Use NanoBanana with `reference_images` pointing to the Stitch screenshot to generate matching icons, banners, or illustrations
+3. Edit/refine with `gemini_edit_image`
+
 ## Best practices
 
 - Always specify `deviceType` to get proper dimensions
@@ -64,3 +81,5 @@ Refer to the references directory for detailed prompt templates organized by cat
 - Include color preferences explicitly (e.g., "dark theme with purple accents")
 - Mention existing design systems if applicable (e.g., "Material Design style")
 - For mobile, mention platform conventions (e.g., "iOS-style grouped list")
+- For standalone assets (icons, banners), use NanoBanana instead of Stitch
+- Use `reference_images` in NanoBanana to maintain visual consistency with Stitch designs
