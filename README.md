@@ -57,22 +57,27 @@ git clone https://github.com/tygwan/stitchkit.git ~/.claude/plugins/stitchkit
 
 After installing the plugin, configure your API keys so the MCP servers can authenticate.
 
-### Step 1: Set environment variables
+### Step 1: Get API keys
 
-Add the following to your shell profile (`~/.bashrc`, `~/.zshrc`, etc.) or a project `.env` file:
+| MCP Server | Key | How to get |
+|---|---|---|
+| **Google Stitch** | `GOOGLE_API_KEY` | [Google Cloud Console](https://console.cloud.google.com/) → APIs & Services → Credentials → Create API Key |
+| **Figma** | `FIGMA_ACCESS_TOKEN` | [Figma](https://figma.com) → Settings → Security → Personal access tokens → Generate |
+| **NanoBanana** | `GOOGLE_AI_API_KEY` | [Google AI Studio](https://aistudio.google.com/apikey) → Create API Key (free) |
+
+### Step 2: Set environment variables
+
+Add to your shell profile (`~/.bashrc`, `~/.zshrc`) or project `.env` file:
 
 ```bash
-# Google Stitch — only needed if you skip OAuth and use API key auth
-export GOOGLE_API_KEY="your-google-cloud-api-key"
-
-# Figma MCP — required for Figma integration
-export FIGMA_ACCESS_TOKEN="figd_your-figma-token"
-
-# NanoBanana (Gemini image generation) — required for image gen
-export GOOGLE_AI_API_KEY="your-google-ai-api-key"
+export GOOGLE_API_KEY="your-google-cloud-api-key"       # Stitch
+export FIGMA_ACCESS_TOKEN="figd_your-figma-token"        # Figma
+export GOOGLE_AI_API_KEY="your-google-ai-api-key"        # NanoBanana
 ```
 
-### Step 2: Verify with `/stitch-setup`
+> Only set the keys for the services you need. Stitch and NanoBanana share Google credentials but from different consoles.
+
+### Step 3: Verify with `/stitch-setup`
 
 Run the setup skill inside Claude Code to validate your configuration:
 
@@ -82,7 +87,7 @@ Run the setup skill inside Claude Code to validate your configuration:
 
 This will check each MCP server's connectivity and guide you through any missing credentials.
 
-### Step 3: Start designing
+### Step 4: Start designing
 
 ```
 Design a SaaS analytics dashboard with KPI cards, revenue chart, and user segments donut chart
