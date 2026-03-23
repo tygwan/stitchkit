@@ -222,12 +222,11 @@ If you want nanobanana without the full stitchkit plugin:
 claude mcp add -s user nanobanana-mcp -- npx -y @ycse/nanobanana-mcp
 ```
 
-> **Requires** a `GOOGLE_AI_API_KEY` (or `GEMINI_API_KEY`) environment variable. Get a free key at [Google AI Studio](https://makersuite.google.com/app/apikey).
+> **Requires** a `GOOGLE_AI_API_KEY` (or `GEMINI_API_KEY`) environment variable. Get a free key at [Google AI Studio](https://aistudio.google.com/apikey).
 
-### Nanobanana template repos
+### Acknowledgments
 
-- [zhongweili/nanobanana-mcp-server](https://github.com/zhongweili/nanobanana-mcp-server) — Original upstream project with full documentation
-- [anthropics/claude-code-mcp-quickstart](https://github.com/anthropics/claude-code-mcp-quickstart) — Claude Code MCP quickstart (general reference)
+- [zhongweili/nanobanana-mcp-server](https://github.com/zhongweili/nanobanana-mcp-server) — Original upstream project
 
 ## Related Projects
 

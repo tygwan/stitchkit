@@ -8,7 +8,6 @@ tools:
   - mcp__stitch__generate_variants
   - mcp__stitch__list_screens
   - mcp__stitch__get_screen
-  - Bash
 ---
 
 # Design Explorer Agent

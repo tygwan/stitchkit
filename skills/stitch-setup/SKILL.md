@@ -29,7 +29,7 @@ Help the user install and configure Google Stitch, Figma, and NanoBanana MCP ser
 
 ### Google Stitch MCP
 
-Stitch uses Google Cloud API key authentication via the Nano Banana (nanobanana) gateway.
+Stitch uses Google Cloud API key authentication via the official Google Stitch MCP server (HTTP type).
 
 #### Step 1: Get a Google Cloud API Key
 
@@ -55,27 +55,28 @@ Add to `.mcp.json`:
 ```json
 {
   "stitch": {
-    "command": "npx",
-    "args": ["-y", "@anthropic/mcp-stitch@latest"],
-    "env": {
-      "GOOGLE_API_KEY": "${GOOGLE_API_KEY}"
+    "type": "http",
+    "url": "https://stitch.googleapis.com/mcp",
+    "headers": {
+      "X-Goog-Api-Key": "your-api-key-here"
     }
   }
 }
 ```
 
-**Option B: Using OAuth (interactive, no API key needed)**
+Or using environment variable:
 
 ```json
 {
   "stitch": {
-    "command": "npx",
-    "args": ["-y", "@anthropic/mcp-stitch@latest"]
+    "type": "http",
+    "url": "https://stitch.googleapis.com/mcp",
+    "headers": {
+      "X-Goog-Api-Key": "${GOOGLE_API_KEY}"
+    }
   }
 }
 ```
-
-The user will be prompted to authenticate with their Google account on first use.
 
 #### Step 3: Verify
 
@@ -146,7 +147,7 @@ NanoBanana provides AI image generation, editing, and smart model selection powe
 
 #### Step 1: Get a Google AI API Key
 
-1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
+1. Go to [Google AI Studio](https://aistudio.google.com/apikey)
 2. Click **Create API key**
 3. Select or create a Google Cloud project
 4. Copy the generated API key
